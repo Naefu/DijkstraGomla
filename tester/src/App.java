@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
@@ -20,7 +19,7 @@ public class App {
         // dijkstra.calculateShortestPath(nodeA);
         // dijkstra.printPaths(Arrays.asList(nodeA, nodeB, nodeC));
 
-BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/map2.jpg"));
+BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/imageinput.jpg"));
 var g = img.createGraphics();
 g.setColor(new Color(90,90,90));
 // Draw on the BufferedImage via the graphics context.
@@ -28,8 +27,6 @@ int x = 0;
 int y = 0;
 int width = 100;
 int height = 1000;
-g.drawRect(x, y, width, height);
-
 g.drawLine(10, 10, 500, 500);
 File f = new File("../DijkstraGomla/tester/src/image.jpg");
 		try {
