@@ -18,11 +18,13 @@ public class App {
         }//to be removed when above comment is done
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.calculateShortestPath(start);
-        Node shortest=start.getShortestPath().get(0);//needs to be changed to method that gets shortest distance based on the given list 
+        Node shortest=helper(start,grocNodes);
+        grocNodes.remove(shortest);// means i reached it so no need for it in the list
         path.add(shortest);
         for (int i = 0; i < groceries.length; i++) {
             dijkstra.calculateShortestPath(nodes[i]);
-            shortest = nodes[i].getShortestPath().get(0);// same thing here
+            shortest = helper(shortest,grocNodes);
+            grocNodes.remove(shortest);
             path.add(shortest);
         }
         // path should be ordered by first you will go to then second then third and so on
