@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.*;
 import java.io.*;
@@ -20,8 +21,8 @@ public class App {
         // dijkstra.printPaths(Arrays.asList(nodeA, nodeB, nodeC));
 
 BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/image.jpg"));
-Graphics2D g = img.createGraphics();
-
+var g = img.createGraphics();
+g.setColor(new Color(90,90,90));
 // Draw on the BufferedImage via the graphics context.
 int x = 0;
 int y = 0;
