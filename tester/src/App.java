@@ -27,6 +27,21 @@ public class App {
         }
         // path should be ordered by first you will go to then second then third and so on
     }
+
+    public static Node helper(Node start, ArrayList<Node> grocNodes){
+        int shortnigga = 999999;
+        int whichnigga = 0;
+        for(int i = 0;i<grocNodes.size();i++){
+            if(shortnigga > grocNodes.get(i).getDistance()){
+                shortnigga = grocNodes.get(i).getDistance();
+                whichnigga = i;
+            }
+        }
+        return grocNodes.get(whichnigga);
+    }
+
+
+
     public static void main(String[] args) throws IOException {
         // String[] groceries = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
         // Node nodeA = new Node("Dairy");
@@ -74,12 +89,6 @@ public class App {
         // dijkstra.calculateShortestPath(nodeA);
         // dijkstra.printPaths(Arrays.asList(nodeA, nodeAb));
 
-
-
-
-
-
-
         Node nodeA = new Node("A");
         Node nodeB = new Node("B");
         Node nodeC = new Node("C");
@@ -103,15 +112,19 @@ public class App {
 
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.calculateShortestPath(nodeA);
-
+        List<Node> niggas = new LinkedList<>();
+        niggas.add(nodeA);
+        niggas.add(nodeB);
+        niggas.add(nodeC);
+        niggas.add(nodeD);
+        niggas.add(nodeE);
+        niggas.add(nodeF);
+        ArrayList<Node> groc = new ArrayList<>(3);
+        groc.add(nodeC);
+        groc.add(nodeD);
+        Node result = helper(nodeA, groc);
+        System.out.println(result.getName());
 //START OF FUNCTION ---------------------------------------------------------------------
-List<Node> niggas = new LinkedList<>();
-// niggas.add(nodeA);
-niggas.add(nodeB);
-niggas.add(nodeC);
-niggas.add(nodeD);
-niggas.add(nodeE);
-niggas.add(nodeF);
 int shortnigga = 999999;
 int bignigga = 0;
 int whichnigga = 0;
@@ -125,8 +138,8 @@ for(int i = 0;i<niggas.size();i++){
         bignigga = niggas.get(i).getDistance();
         whichernigga = i+1;
     }
-    
 }
+
 
 System.out.println(whichnigga);
 System.out.println(shortnigga); 
@@ -134,17 +147,6 @@ System.out.println(whichernigga);
 System.out.println(bignigga);     
 //END OF FUNCTION -------------------------------------------------------------------------
         dijkstra.printPaths(List.of(nodeA, nodeB, nodeC, nodeD, nodeE, nodeF));
-
-
-
-
-
-
-
-
-
-
-
 
 
 BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/imageinput.jpg"));
