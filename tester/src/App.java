@@ -123,7 +123,7 @@ for(int i = 0;i<niggas.size();i++){
     }
     if(bignigga < niggas.get(i).getDistance()){
         bignigga = niggas.get(i).getDistance();
-        whichernigga = i;
+        whichernigga = i+1;
     }
     
 }
