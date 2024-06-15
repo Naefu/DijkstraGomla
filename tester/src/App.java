@@ -6,6 +6,27 @@ import java.util.stream.Collectors;
 
 import javax.imageio.*;
 public class App {
+    static Node start = new Node("Start");
+    static String[] groceries = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
+    static ArrayList<Node> grocNodes = new ArrayList<>(groceries.length);
+    static ArrayList<Node> path = new ArrayList<>();
+    public static void pathtobetaken() {
+       //missing a way to turn the strings to the needed nodes
+        Node[] nodes = new Node[groceries.length];
+        for (int i = 0; i < groceries.length; i++) {
+            nodes[i] = new Node(groceries[i]);
+        }//to be removed when above comment is done
+        Dijkstra dijkstra = new Dijkstra();
+        dijkstra.calculateShortestPath(start);
+        Node shortest=start.getShortestPath().get(0);//needs to be changed to method that gets shortest distance based on the given list 
+        path.add(shortest);
+        for (int i = 0; i < groceries.length; i++) {
+            dijkstra.calculateShortestPath(nodes[i]);
+            shortest = nodes[i].getShortestPath().get(0);// same thing here
+            path.add(shortest);
+        }
+        // path should be ordered by first you will go to then second then third and so on
+    }
     public static void main(String[] args) throws IOException {
         // String[] groceries = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
         // Node nodeA = new Node("Dairy");
