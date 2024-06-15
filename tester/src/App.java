@@ -20,7 +20,7 @@ public class App {
         // dijkstra.calculateShortestPath(nodeA);
         // dijkstra.printPaths(Arrays.asList(nodeA, nodeB, nodeC));
 
-BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/image.jpg"));
+BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/map2.jpg"));
 var g = img.createGraphics();
 g.setColor(new Color(90,90,90));
 // Draw on the BufferedImage via the graphics context.
@@ -37,7 +37,6 @@ File f = new File("../DijkstraGomla/tester/src/image.jpg");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-// Clean up -- dispose the graphics context that was created.
 g.dispose();
     }
 }
