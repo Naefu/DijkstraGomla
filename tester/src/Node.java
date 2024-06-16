@@ -15,7 +15,11 @@ public class Node implements Comparable<Node> {
 
 public void addAdjacentNode(Node node, int weight){
   adjacentNodes.put(node, weight);
+  node.flipaddAdjacentNode(this, weight);
 }
+public void flipaddAdjacentNode(Node node, int weight){
+    adjacentNodes.put(node, weight);
+  }
 
 public int compareTo(Node node){
   return Integer.compare(this.distance, node.getDistance());
