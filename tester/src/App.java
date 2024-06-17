@@ -3,6 +3,7 @@ import java.awt.image.*;
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.imageio.*;
 public class App {
@@ -46,6 +47,7 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         String[] groceries = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
+        
         Node S = new Node("Start");
         Node Dbl = new Node("Dbl");
         Node Dairy = new Node("Dairy");
@@ -87,135 +89,331 @@ public class App {
         Dbr.addAdjacentNode(Fruit, 1);//Dbr↔Fruit
         Dbr.addAdjacentNode(Dairy, 1);//Dbr↔Dairy
 
+        ArrayList<Node> niggas = new ArrayList<>();
+
+        niggas.add(Le);
+        niggas.add(De);
+        niggas.add(Dbr);
+        niggas.add(Dbl);
+        niggas.add(Ie);
+        niggas.add(Tb);
+        niggas.add(S);
+        niggas.add(BC);
+        niggas.add(Bread);
+        niggas.add(TL);
+        niggas.add(IcecreamCereal);
+        niggas.add(TeaSpices);
+        niggas.add(Bb);
+        niggas.add(Veggies);
+        niggas.add(Fruit);
+        niggas.add(Laundry);
+        niggas.add(Deli);
+        niggas.add(Dairy);
+        
         Dijkstra dijkstra = new Dijkstra();
-        dijkstra.calculateShortestPath(Dbr);
-        dijkstra.printPaths(Arrays.asList(Bread, Tb));
-
-        // Node nodeA = new Node("A");
-        // Node nodeB = new Node("B");
-        // Node nodeC = new Node("C");
-        // Node nodeD = new Node("D");
-        // Node nodeE = new Node("E");
-        // Node nodeF = new Node("F");
-
-        // nodeA.addAdjacentNode(nodeB, 2);
-        // nodeA.addAdjacentNode(nodeC, 4);
-
-        // nodeB.addAdjacentNode(nodeC, 3);
-        // nodeB.addAdjacentNode(nodeD, 1);
-        // nodeB.addAdjacentNode(nodeE, 5);
-
-        // nodeC.addAdjacentNode(nodeD, 2);
-
-        // nodeD.addAdjacentNode(nodeE, 1);
-        // nodeD.addAdjacentNode(nodeF, 4);
-
-        // nodeE.addAdjacentNode(nodeF, 2);
-
-        // Dijkstra dijkstra = new Dijkstra();
-        // dijkstra.calculateShortestPath(nodeA);
-        // List<Node> niggas = new LinkedList<>();
-        // niggas.add(nodeA);
-        // niggas.add(nodeB);
-        // niggas.add(nodeC);
-        // niggas.add(nodeD);
-        // niggas.add(nodeE);
-        // niggas.add(nodeF);
+        dijkstra.calculateShortestPath(S);
+        Node destination = Dairy;
+        dijkstra.printPaths(Arrays.asList(destination));
         // ArrayList<Node> groc = new ArrayList<>(3);
         // groc.add(nodeC);
         // groc.add(nodeD);
         // Node result = helper(nodeA, groc);
         // System.out.println(result.getName());
 //START OF FUNCTION ---------------------------------------------------------------------
-// int shortnigga = 999999;
-// int bignigga = 0;
-// int whichnigga = 0;
-// int whichernigga = 0;
+// int smolnigga = 999999;
+// String whichnigga = "";
 // for(int i = 0;i<niggas.size();i++){
-//     if(shortnigga > niggas.get(i).getDistance()){
-//         shortnigga = niggas.get(i).getDistance();
-//         whichnigga = i+1;
-//     }
-//     if(bignigga < niggas.get(i).getDistance()){
-//         bignigga = niggas.get(i).getDistance();
-//         whichernigga = i+1;
+//     if(smolnigga > niggas.get(i).getDistance()){
+//         smolnigga = niggas.get(i).getDistance();
+//         whichnigga = niggas.get(i).getName();
 //     }
 // }
-
-
 // System.out.println(whichnigga);
-// System.out.println(shortnigga); 
-// System.out.println(whichernigga);
-// System.out.println(bignigga);     
+// System.out.println(smolnigga);  
 //END OF FUNCTION -------------------------------------------------------------------------
-        // dijkstra.printPaths(List.of(nodeA, nodeB, nodeC, nodeD, nodeE, nodeF));
 
 
 BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/imageinput.jpg"));
-var a = img.createGraphics();
-a.setColor(new Color(90,90,90));
+var a = img.createGraphics();//Tb↔TeaSpices
+// a.setColor(new Color(90,90,90));
 a.fillRect(250, 205, 173, 4);
-var b = img.createGraphics();
-b.setColor(new Color(100,0,90));
+var b = img.createGraphics();//TL↔TeaSpices
+// b.setColor(new Color(100,0,90));
 b.fillRect(423, 205, 135, 4);
-var c = img.createGraphics();
-c.setColor(new Color(90,0,0));
+var c = img.createGraphics();//TL↔Laundry
+// c.setColor(new Color(90,0,0));
 c.fillRect(557, 205, 135, 4);
-var d = img.createGraphics();
-d.setColor(new Color(0,90,90));
+var d = img.createGraphics();//BC↔TL
+// d.setColor(new Color(0,90,90));
 d.fillRect(557, 117, 4, 92);
-var e = img.createGraphics();
-e.setColor(new Color(0,90,90));
+var e = img.createGraphics();//Bb↔Tb
+// e.setColor(new Color(0,90,90));
 e.fillRect(250, 117, 4, 92);
-var f = img.createGraphics();
-f.setColor(new Color(100,0,90));
+var f = img.createGraphics();//Bb↔Bread
+// f.setColor(new Color(100,0,90));
 f.fillRect(250, 117, 173, 4);
-var g = img.createGraphics();
-g.setColor(new Color(100,0,90));
+var g = img.createGraphics();//BC↔IcecreamCereal
+// g.setColor(new Color(100,0,90));
 g.fillRect(557, 117, 135, 4);
-var h = img.createGraphics();
-h.setColor(new Color(255,90,90));
+var h = img.createGraphics();//BC↔Bread
+// h.setColor(new Color(255,90,90));
 h.fillRect(423, 117, 135, 4);
-var i = img.createGraphics();
-i.setColor(new Color(255,90,77));
+var i = img.createGraphics();//S↔BC
+// i.setColor(new Color(255,90,77));
 i.fillRect(557, 67, 4, 50);
-var j = img.createGraphics();
-j.setColor(new Color(100,0,90));
-j.fillRect(422, 67, 135, 4);
-var k = img.createGraphics();
-k.setColor(new Color(0,255,90));
+var j = img.createGraphics();//S↔Deli
+// j.setColor(new Color(100,0,90));
+j.fillRect(423, 67, 135, 4);
+var k = img.createGraphics();//Dbl↔Deli
+// k.setColor(new Color(0,255,90));
 k.fillRect(250, 67, 173, 4);
-var l = img.createGraphics();
-l.setColor(new Color(255,90,77));
+var l = img.createGraphics();//Dbl↔Bb
+// l.setColor(new Color(255,90,77));
 l.fillRect(250, 67, 4, 50);
-var m = img.createGraphics();
-m.setColor(new Color(0,255,0));
+var m = img.createGraphics();//Ie↔IcecreamCereal
+// m.setColor(new Color(0,255,0));
 m.fillRect(692, 117, 125, 4);
-var n = img.createGraphics();
-n.setColor(new Color(0,255,0));
+var n = img.createGraphics();//Le↔Laundry
+// n.setColor(new Color(0,255,0));
 n.fillRect(692, 205, 125, 4);
-var o = img.createGraphics();
-o.setColor(new Color(0,90,90));
+var o = img.createGraphics();//Ie↔Le
+// o.setColor(new Color(0,90,90));
 o.fillRect(817, 117, 4, 92);
-var p = img.createGraphics();
-p.setColor(new Color(0,90,90));
+var p = img.createGraphics();//Dbr↔Dairy
+// p.setColor(new Color(0,90,90));
 p.fillRect(908, 67, 4, 85);
-var q = img.createGraphics();
-q.setColor(new Color(255,90,0));
+var q = img.createGraphics();//De↔Veggies
+// q.setColor(new Color(255,90,0));
 q.fillRect(817, 237, 95, 4);
-var r = img.createGraphics();
-r.setColor(new Color(255,90,255));
+var r = img.createGraphics();//Dbr↔Fruit
+// r.setColor(new Color(255,90,255));
 r.fillRect(817, 67, 95, 4);
-var s = img.createGraphics();
-s.setColor(new Color(0,0,90));
+var s = img.createGraphics();//De↔Dairy
+// s.setColor(new Color(0,0,90));
 s.fillRect(908, 152, 4, 85);
-var t = img.createGraphics();
-t.setColor(new Color(0,0,90));
+var t = img.createGraphics();//Ie↔Fruit
+// t.setColor(new Color(0,0,90));
 t.fillRect(817, 67, 4, 50);
-var u = img.createGraphics();
-u.setColor(new Color(0,0,90));
-u.fillRect(817, 205, 4, 34);
+var u = img.createGraphics();//Le↔Veggies
+// u.setColor(new Color(0,0,90));
+u.fillRect(817, 205, 4, 32);
 
+
+List<Node> smollestPath = destination.getShortestPath();
+smollestPath = Stream.concat(smollestPath.stream(), Stream.of(destination)).toList();
+for (int ic = 1; ic < smollestPath.size(); ic++) {
+    if(smollestPath.get(ic).getName() == "BC"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Bread":
+                f.setColor(new Color(0,0,0));
+                break;
+            case "IcecreamCereal":
+                g.setColor(new Color(0,0,0));
+                break;
+            case "TL":
+                d.setColor(new Color(0,0,0));
+                break;
+            case "Start":
+                i.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Start"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "BC":
+                i.setColor(new Color(0,0,0));
+                break;
+            case "Deli":
+                j.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Ie"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "IcecreamCereal":
+                m.setColor(new Color(0,0,0));
+                break;
+            case "Fruit":
+                t.setColor(new Color(0,0,0));
+                break;
+            case "Le":
+                o.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Le"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Veggies":
+                u.setColor(new Color(0,0,0));
+                break;
+            case "Laundry":
+                n.setColor(new Color(0,0,0));
+                break;
+            case "Ie":
+                o.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "S"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Deli":
+                j.setColor(new Color(0,0,0));
+                break;
+            case "BC":
+                i.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Bb"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Dbl":
+                l.setColor(new Color(0,0,0));
+                break;
+            case "Tb":
+                e.setColor(new Color(0,0,0));
+                break;
+            case "Bread":
+                f.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Dbl"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Deli":
+                k.setColor(new Color(0,0,0));
+                break;
+            case "Bb":
+                l.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Tb"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "TeaSpices":
+                a.setColor(new Color(0,0,0));
+                break;
+            case "Bb":
+                e.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Dbr"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Dairy":
+                p.setColor(new Color(0,0,0));
+                break;
+            case "Fruit":
+                r.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Fruit"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Ie":
+                t.setColor(new Color(0,0,0));
+                break;
+            case "Dbr":
+                r.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Veggies"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Le":
+                u.setColor(new Color(0,0,0));
+                break;
+            case "De":
+                q.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Deli"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "S":
+                j.setColor(new Color(0,0,0));
+                break;
+            case "Dbl":
+                k.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "TeaSpices"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Tb":
+                a.setColor(new Color(0,0,0));
+                break;
+            case "TL":
+                b.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Bread"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "BC":
+                h.setColor(new Color(0,0,0));
+                break;
+            case "Bb":
+                f.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "TL"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "BC":
+                d.setColor(new Color(0,0,0));
+                break;
+            case "TeaSpices":
+                b.setColor(new Color(0,0,0));
+                break;
+            case "Laundry":
+                c.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "IcecreamCereal"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "BC":
+                g.setColor(new Color(0,0,0));
+                break;
+            case "Ie":
+                m.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Laundry"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "TL":
+                c.setColor(new Color(0,0,0));
+                break;
+            case "Le":
+                n.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "Dairy"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Dbr":
+                p.setColor(new Color(0,0,0));
+                break;
+            case "De":
+                s.setColor(new Color(0,0,0));
+                break;
+        }
+    }else if(smollestPath.get(ic).getName() == "De"){
+        switch (smollestPath.get(ic-1).getName()) {
+            case "Veggies":
+                q.setColor(new Color(0,0,0));
+                break;
+            case "Dairy":
+                s.setColor(new Color(0,0,0));
+                break;
+        }
+    }
+}
+a.fillRect(250, 205, 173, 4);
+b.fillRect(423, 205, 135, 4);
+c.fillRect(557, 205, 135, 4);
+d.fillRect(557, 117, 4, 92);
+e.fillRect(250, 117, 4, 92);
+f.fillRect(250, 117, 173, 4);
+g.fillRect(557, 117, 135, 4);
+h.fillRect(423, 117, 135, 4);
+i.fillRect(557, 67, 4, 50);
+j.fillRect(423, 67, 135, 4);
+k.fillRect(250, 67, 173, 4);
+l.fillRect(250, 67, 4, 54);
+m.fillRect(692, 117, 125, 4);
+n.fillRect(692, 205, 125, 4);
+o.fillRect(817, 117, 4, 92);
+p.fillRect(908, 67, 4, 85);
+q.fillRect(817, 237, 95, 4);
+r.fillRect(817, 67, 95, 4);
+s.fillRect(908, 152, 4, 85);
+t.fillRect(817, 67, 4, 50);
+u.fillRect(817, 205, 4, 32);
 File fi = new File("../DijkstraGomla/tester/src/image.jpg");
 		try {
 			ImageIO.write(img, "jpg", fi);
@@ -241,5 +439,7 @@ File fi = new File("../DijkstraGomla/tester/src/image.jpg");
         q.dispose();
         r.dispose();
         s.dispose();
+        t.dispose();
+        u.dispose();
     }
 }
