@@ -99,7 +99,26 @@ public class App {
     //     // dijkstra.calculateShortestPath(Fruit);
     //     // dijkstra.calculateShortestPath(Veggies);
     // }
-
+    private static void reset(){
+        S.setDistance(Integer.MAX_VALUE);
+        Dbl.setDistance(Integer.MAX_VALUE);
+        Dairy.setDistance(Integer.MAX_VALUE);
+        Dbr.setDistance(Integer.MAX_VALUE);
+        Bb.setDistance(Integer.MAX_VALUE);
+        BC.setDistance(Integer.MAX_VALUE);
+        Tb.setDistance(Integer.MAX_VALUE);
+        TL.setDistance(Integer.MAX_VALUE);
+        Bread.setDistance(Integer.MAX_VALUE);
+        IcecreamCereal.setDistance(Integer.MAX_VALUE);
+        Deli.setDistance(Integer.MAX_VALUE);
+        TeaSpices.setDistance(Integer.MAX_VALUE);
+        Laundry.setDistance(Integer.MAX_VALUE);
+        Fruit.setDistance(Integer.MAX_VALUE);
+        Veggies.setDistance(Integer.MAX_VALUE);
+        De.setDistance(Integer.MAX_VALUE);
+        Ie.setDistance(Integer.MAX_VALUE);
+        Le.setDistance(Integer.MAX_VALUE);   
+    }
     private static void str_to_node(){
 
         //mapping the nodes to the strings
@@ -130,11 +149,13 @@ public class App {
         grocNodes.remove(shortest);// means i reached it so no need for it in the list
         path.add(shortest);
         for (int i = 0; i < groceries.length-1; i++) {
+            reset();
             dijkstra.calculateShortestPath(shortest);
             shortest = helper(shortest,grocNodes);
             grocNodes.remove(shortest);
             path.add(shortest);
         }
+        
         // path should be ordered by first you will go to then second then third and so on
     }
 
@@ -167,7 +188,9 @@ public class App {
         Dijkstra dijkstra = new Dijkstra();
         // dijkstra.calculateShortestPath(S);
         Node destination = Dairy;
-        dijkstra.printPaths(path);
+        for (Node node : path) {
+            System.out.println(node.getName());
+        }
         // ArrayList<Node> groc = new ArrayList<>(3);
         // groc.add(nodeC);
         // groc.add(nodeD);
