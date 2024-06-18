@@ -74,49 +74,41 @@ public class App {
         Dbr.addAdjacentNode(Fruit, 1);//Dbr↔Fruit
         Dbr.addAdjacentNode(Dairy, 1);//Dbr↔Dairy
 
-        getallshortestpath();
+        //getallshortestpath();
         str_to_node();
     }
-    private static void getallshortestpath(){
-        // might be removed depending on the time it takes
-        Dijkstra dijkstra = new Dijkstra();
-        dijkstra.calculateShortestPath(S);
-        // dijkstra.calculateShortestPath(BC);
-        // dijkstra.calculateShortestPath(Bread);
-        // dijkstra.calculateShortestPath(IcecreamCereal);
-        // dijkstra.calculateShortestPath(TL);
-        // dijkstra.calculateShortestPath(TeaSpices);
-        // dijkstra.calculateShortestPath(Laundry);
-        // dijkstra.calculateShortestPath(Deli);
-        // dijkstra.calculateShortestPath(Dbl);
-        // dijkstra.calculateShortestPath(Bb);
-        // dijkstra.calculateShortestPath(Tb);
-        // dijkstra.calculateShortestPath(Ie);
-        // dijkstra.calculateShortestPath(Le);
-        // dijkstra.calculateShortestPath(De);
-        // dijkstra.calculateShortestPath(Dbr);
-        // dijkstra.calculateShortestPath(Dairy);
-        // dijkstra.calculateShortestPath(Fruit);
-        // dijkstra.calculateShortestPath(Veggies);
-    }
+    // private static void getallshortestpath(){
+    //     // might be removed depending on the time it takes
+    //     Dijkstra dijkstra = new Dijkstra();
+    //     dijkstra.calculateShortestPath(S);
+    //     // dijkstra.calculateShortestPath(BC);
+    //     // dijkstra.calculateShortestPath(Bread);
+    //     // dijkstra.calculateShortestPath(IcecreamCereal);
+    //     // dijkstra.calculateShortestPath(TL);
+    //     // dijkstra.calculateShortestPath(TeaSpices);
+    //     // dijkstra.calculateShortestPath(Laundry);
+    //     // dijkstra.calculateShortestPath(Deli);
+    //     // dijkstra.calculateShortestPath(Dbl);
+    //     // dijkstra.calculateShortestPath(Bb);
+    //     // dijkstra.calculateShortestPath(Tb);
+    //     // dijkstra.calculateShortestPath(Ie);
+    //     // dijkstra.calculateShortestPath(Le);
+    //     // dijkstra.calculateShortestPath(De);
+    //     // dijkstra.calculateShortestPath(Dbr);
+    //     // dijkstra.calculateShortestPath(Dairy);
+    //     // dijkstra.calculateShortestPath(Fruit);
+    //     // dijkstra.calculateShortestPath(Veggies);
+    // }
 
     private static void str_to_node(){
 
         //mapping the nodes to the strings
-        niggas.put("le",Le);// not sure what is this
-        niggas.put("de",De);// not sure what is this
-        niggas.put("dbr",Dbr);// not sure what is this
-        niggas.put("dbl",Dbl);// not sure what is this
-        niggas.put("ie",Ie);// not sure what is this
-        niggas.put("tb",Tb);// not sure what is this
-        niggas.put("bc",BC);// not sure what is this
+
         niggas.put("bread",Bread);
-        niggas.put("tl",TL);// not sure what is this
         niggas.put("ice cream",IcecreamCereal);
         niggas.put("cereal",IcecreamCereal);
         niggas.put("tea",TeaSpices);
         niggas.put("spices",TeaSpices);
-        niggas.put("bb",Bb);// not sure what is this
         niggas.put("vegetables",Veggies);
         niggas.put("fruits",Fruit);
         niggas.put("laundry",Laundry);
@@ -132,13 +124,13 @@ public class App {
     public static void pathtobetaken(String[] groce) {
        
         grocNodes = getnodes(groce);
-        // Dijkstra dijkstra = new Dijkstra();
-        // dijkstra.calculateShortestPath(S);
-        Node shortest=helper(start,grocNodes);
+        Dijkstra dijkstra = new Dijkstra();
+        dijkstra.calculateShortestPath(S);
+        Node shortest=helper(S,grocNodes);
         grocNodes.remove(shortest);// means i reached it so no need for it in the list
         path.add(shortest);
         for (int i = 0; i < groceries.length-1; i++) {
-            dijkstra.calculateShortestPath(path[i]);
+            dijkstra.calculateShortestPath(shortest);
             shortest = helper(shortest,grocNodes);
             grocNodes.remove(shortest);
             path.add(shortest);
