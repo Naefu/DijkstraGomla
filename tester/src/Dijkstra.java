@@ -8,7 +8,8 @@ public class Dijkstra {
     public void calculateShortestPath(Node source) {
         source.setDistance(0);
         Set<Node> settledNodes = new HashSet<>();
-        Queue<Node> unsettledNodes = new PriorityQueue<>(Collections.singleton(source));
+        Queue<Node> unsettledNodes = new PriorityQueue<>();
+        unsettledNodes.add(source);
         while (!unsettledNodes.isEmpty()) {
             Node currentNode = unsettledNodes.poll();
             currentNode.getAdjacentNodes()
