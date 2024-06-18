@@ -1,5 +1,6 @@
 
 import java.util.*;
+import java.util.List;
 
 public class Node implements Comparable<Node> {
 
@@ -12,7 +13,10 @@ public class Node implements Comparable<Node> {
     public Node(String name) {
         this.name = name;
     }
-
+public void remove(){
+    List<Node> interim = new LinkedList<>();
+    shortestPath = interim;
+}
 public void addAdjacentNode(Node node, int weight){
   adjacentNodes.put(node, weight);
   node.flipaddAdjacentNode(this, weight);

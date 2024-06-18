@@ -31,6 +31,7 @@ public class App {
     private static Node Ie;
     private static Node Le;
     private static HashMap<String, Node> niggas = new HashMap<>();
+    private static List<Node> allnodes = new ArrayList<>();
     // everything that needs to be loaded before app starts
     public static void init(){
         S = new Node("Start");
@@ -75,6 +76,24 @@ public class App {
         Dbr.addAdjacentNode(Dairy, 1);//Dbr↔Dairy
 
         //getallshortestpath();
+        allnodes.add(S);
+        allnodes.add(BC);
+        allnodes.add(TL);
+        allnodes.add(Dbl);
+        allnodes.add(Dbr);
+        allnodes.add(Bb);
+        allnodes.add(Tb);
+        allnodes.add(Ie);
+        allnodes.add(Le);
+        allnodes.add(IcecreamCereal);
+        allnodes.add(Fruit);
+        allnodes.add(Veggies);
+        allnodes.add(Deli);
+        allnodes.add(Bread);
+        allnodes.add(Dairy);
+        allnodes.add(De);
+        allnodes.add(Laundry);
+        allnodes.add(TeaSpices);
         str_to_node();
     }
     // private static void getallshortestpath(){
@@ -117,7 +136,10 @@ public class App {
         Veggies.setDistance(Integer.MAX_VALUE);
         De.setDistance(Integer.MAX_VALUE);
         Ie.setDistance(Integer.MAX_VALUE);
-        Le.setDistance(Integer.MAX_VALUE);   
+        Le.setDistance(Integer.MAX_VALUE);  
+        for(Node n : allnodes){
+            n.remove();
+        } 
     }
     private static void str_to_node(){
 
@@ -153,7 +175,9 @@ public class App {
             dijkstra.calculateShortestPath(shortest);
             shortest = helper(shortest,grocNodes);
             grocNodes.remove(shortest);
-            path.add(shortest);
+            for(int j = 0; j < shortest.getShortestPath().size();j++){
+                path.add(shortest.getShortestPath().get(j));
+            }
         }
         
         // path should be ordered by first you will go to then second then third and so on
