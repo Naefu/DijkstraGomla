@@ -165,6 +165,7 @@ public class App {
     public static void pathtobetaken(String[] groce) {
        
         grocNodes = getnodes(groce);
+        Node last = new Node("");
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.calculateShortestPath(S);
         Node shortest=helper(S,grocNodes);
@@ -180,8 +181,12 @@ public class App {
             for(int j = 0; j < shortest.getShortestPath().size();j++){
                 path.add(shortest.getShortestPath().get(j));
             }
+            if(grocNodes.size()==1){
+                last = grocNodes.get(0);
+            }
+        
         }
-
+        path.add(last);
         // path should be ordered by first you will go to then second then third and so on
     }
 
@@ -217,24 +222,6 @@ public class App {
         for (Node node : path) {
             System.out.println(node.getName());
         }
-        // ArrayList<Node> groc = new ArrayList<>(3);
-        // groc.add(nodeC);
-        // groc.add(nodeD);
-        // Node result = helper(nodeA, groc);
-        // System.out.println(result.getName());
-//START OF FUNCTION ---------------------------------------------------------------------
-// int smolnigga = 999999;
-// String whichnigga = "";
-// for(int i = 0;i<niggas.size();i++){
-//     if(smolnigga > niggas.get(i).getDistance()){
-//         smolnigga = niggas.get(i).getDistance();
-//         whichnigga = niggas.get(i).getName();
-//     }
-// }
-// System.out.println(whichnigga);
-// System.out.println(smolnigga);  
-//END OF FUNCTION -------------------------------------------------------------------------
-
 
 BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/imageinput.jpg"));
 var a = img.createGraphics();//Tb↔TeaSpices
@@ -302,8 +289,9 @@ var u = img.createGraphics();//Le↔Veggies
 u.fillRect(817, 205, 4, 32);
 
 
-List<Node> smollestPath = destination.getShortestPath();
-smollestPath = Stream.concat(smollestPath.stream(), Stream.of(destination)).toList();
+// List<Node> smollestPath = destination.getShortestPath();
+List<Node> smollestPath = path;
+// smollestPath = Stream.concat(smollestPath.stream(), Stream.of(destination)).toList();
 for (int ic = 1; ic < smollestPath.size(); ic++) {
     if(smollestPath.get(ic).getName() == "BC"){
         switch (smollestPath.get(ic-1).getName()) {
