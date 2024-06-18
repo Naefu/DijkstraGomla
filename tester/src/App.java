@@ -169,7 +169,9 @@ public class App {
         dijkstra.calculateShortestPath(S);
         Node shortest=helper(S,grocNodes);
         grocNodes.remove(shortest);// means i reached it so no need for it in the list
-        path.add(shortest);
+        for(int j = 0; j < shortest.getShortestPath().size();j++){
+            path.add(shortest.getShortestPath().get(j));
+        }
         for (int i = 0; i < groceries.length-1; i++) {
             reset();
             dijkstra.calculateShortestPath(shortest);
@@ -179,7 +181,7 @@ public class App {
                 path.add(shortest.getShortestPath().get(j));
             }
         }
-        
+
         // path should be ordered by first you will go to then second then third and so on
     }
 
