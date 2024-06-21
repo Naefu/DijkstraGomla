@@ -5,8 +5,12 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import javax.imageio.*;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 public class App {
     static Node start = new Node("Start");
     static String[] groceries = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
@@ -30,7 +34,7 @@ public class App {
     private static Node De;
     private static Node Ie;
     private static Node Le;
-    private static HashMap<String, Node> niggas = new HashMap<>();
+    private static HashMap<String, Node> mappednodes = new HashMap<>();
     private static List<Node> allnodes = new ArrayList<>();
     // everything that needs to be loaded before app starts
     public static void init(){
@@ -96,28 +100,6 @@ public class App {
         allnodes.add(TeaSpices);
         str_to_node();
     }
-    // private static void getallshortestpath(){
-    //     // might be removed depending on the time it takes
-    //     Dijkstra dijkstra = new Dijkstra();
-    //     dijkstra.calculateShortestPath(S);
-    //     // dijkstra.calculateShortestPath(BC);
-    //     // dijkstra.calculateShortestPath(Bread);
-    //     // dijkstra.calculateShortestPath(IcecreamCereal);
-    //     // dijkstra.calculateShortestPath(TL);
-    //     // dijkstra.calculateShortestPath(TeaSpices);
-    //     // dijkstra.calculateShortestPath(Laundry);
-    //     // dijkstra.calculateShortestPath(Deli);
-    //     // dijkstra.calculateShortestPath(Dbl);
-    //     // dijkstra.calculateShortestPath(Bb);
-    //     // dijkstra.calculateShortestPath(Tb);
-    //     // dijkstra.calculateShortestPath(Ie);
-    //     // dijkstra.calculateShortestPath(Le);
-    //     // dijkstra.calculateShortestPath(De);
-    //     // dijkstra.calculateShortestPath(Dbr);
-    //     // dijkstra.calculateShortestPath(Dairy);
-    //     // dijkstra.calculateShortestPath(Fruit);
-    //     // dijkstra.calculateShortestPath(Veggies);
-    // }
     private static void reset(){
         S.setDistance(Integer.MAX_VALUE);
         Dbl.setDistance(Integer.MAX_VALUE);
@@ -145,21 +127,21 @@ public class App {
 
         //mapping the nodes to the strings
 
-        niggas.put("bread",Bread);
-        niggas.put("ice cream",IcecreamCereal);
-        niggas.put("cereal",IcecreamCereal);
-        niggas.put("tea",TeaSpices);
-        niggas.put("spices",TeaSpices);
-        niggas.put("vegetables",Veggies);
-        niggas.put("fruits",Fruit);
-        niggas.put("laundry",Laundry);
-        niggas.put("deli",Deli);// not sure what is this
-        niggas.put("dairy",Dairy);
-        niggas.put("milk",Dairy);
-        niggas.put("towel",Laundry);
-        niggas.put("icecream",IcecreamCereal);
-        niggas.put("black pepper",TeaSpices);
-        niggas.put("tomatoes",Fruit);
+        mappednodes.put("bread",Bread);
+        mappednodes.put("ice cream",IcecreamCereal);
+        mappednodes.put("cereal",IcecreamCereal);
+        mappednodes.put("tea",TeaSpices);
+        mappednodes.put("spices",TeaSpices);
+        mappednodes.put("vegetables",Veggies);
+        mappednodes.put("fruits",Fruit);
+        mappednodes.put("laundry",Laundry);
+        mappednodes.put("deli",Deli);// not sure what is this
+        mappednodes.put("dairy",Dairy);
+        mappednodes.put("milk",Dairy);
+        mappednodes.put("towel",Laundry);
+        mappednodes.put("icecream",IcecreamCereal);
+        mappednodes.put("black pepper",TeaSpices);
+        mappednodes.put("tomatoes",Fruit);
         
     }
     public static void pathtobetaken(String[] groce) {
@@ -193,21 +175,21 @@ public class App {
     private static ArrayList<Node> getnodes(String[] groc){
         ArrayList<Node> grocnodes = new ArrayList<>();
         for(int i = 0;i<groc.length;i++){
-         grocnodes.add(niggas.get(groc[i]));  
+         grocnodes.add(mappednodes.get(groc[i]));  
         }
         return grocnodes;
     }
 
     private static Node helper(Node start, ArrayList<Node> grocNodes){
-        int shortnigga = 999999;
-        int whichnigga = 0;
+        int shortest = 999999;
+        int shortestindex = 0;
         for(int i = 0;i<grocNodes.size();i++){
-            if(shortnigga > grocNodes.get(i).getDistance()){
-                shortnigga = grocNodes.get(i).getDistance();
-                whichnigga = i;
+            if(shortest > grocNodes.get(i).getDistance()){
+                shortest = grocNodes.get(i).getDistance();
+                shortestindex = i;
             }
         }
-        return grocNodes.get(whichnigga);
+        return grocNodes.get(shortestindex);
     }
 
 
@@ -216,13 +198,10 @@ public class App {
         init();
         String[] groce = {"milk","tea","towel","ice cream","bread","black pepper","tomatoes"};
         pathtobetaken(groce);
-        Dijkstra dijkstra = new Dijkstra();
-        // dijkstra.calculateShortestPath(S);
-        Node destination = Dairy;
         for (Node node : path) {
             System.out.println(node.getName());
         }
-
+       
 BufferedImage img = ImageIO.read(new File("../DijkstraGomla/tester/src/imageinput.jpg"));
 var a = img.createGraphics();//Tb↔TeaSpices
 // a.setColor(new Color(90,90,90));
@@ -505,6 +484,11 @@ r.fillRect(817, 67, 95, 4);
 s.fillRect(908, 152, 4, 85);
 t.fillRect(817, 67, 4, 50);
 u.fillRect(817, 205, 4, 32);
+
+new MyFrame(path);
+
+
+
 File fi = new File("../DijkstraGomla/tester/src/image.jpg");
 		try {
 			ImageIO.write(img, "jpg", fi);
